@@ -1,7 +1,7 @@
 abstract class ApiEndPoint {
-  static const BASE_URL = 'https://dummyapi.io';
+  static const BASE_URL = 'https://api.foursquare.com';
 
-  static const _REQUEST_URL = '$BASE_URL/data/v1';
+  static const _REQUEST_URL = '$BASE_URL/v3';
 
-  static const GET_POSTS = '$_REQUEST_URL/post';
+  static const SEARCH_PLACE = '$_REQUEST_URL/places/search';
 }

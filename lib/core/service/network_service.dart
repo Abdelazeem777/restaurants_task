@@ -24,9 +24,9 @@ abstract class NetworkService {
 class NetworkServiceImpl implements NetworkService {
   NetworkServiceImpl();
 
-  final _dio = Dio(BaseOptions(
-      headers: {'app-id': '65eb2bc3787b68499879a7e1'},
-      validateStatus: (_) => true));
+  final _dio = Dio(BaseOptions(headers: {
+    'Authorization:': 'fsq3R5JGJ8JEdavqMcdl/y+dnkI7Y0EzpMKXfaKgZz7esTw='
+  }, validateStatus: (_) => true));
 
   @override
   Future<Response> get(
