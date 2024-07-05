@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:restaurants_task/core/di/injector.dart';
 import 'package:restaurants_task/features/home/presentation/pages/home_page.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
@@ -24,7 +25,7 @@ const inspectorEnabled = true;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  setupServiceLocator();
   runApp(
     const RequestsInspector(
       enabled: inspectorEnabled,
