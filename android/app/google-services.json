@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1025265530695",
+    "project_id": "restaurants-task",
+    "storage_bucket": "restaurants-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025265530695:android:b9c87e1351103bb7553e62",
+        "android_client_info": {
+          "package_name": "com.example.restaurants_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeZBLOasaklKvPKhIWRv-ylsp0p4aWrKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
