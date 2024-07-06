@@ -4,4 +4,5 @@ abstract class ApiEndPoint {
   static const _REQUEST_URL = '$BASE_URL/v3';
 
   static const SEARCH_PLACE = '$_REQUEST_URL/places/search';
+  static const DETAIL_PLACE = '$_REQUEST_URL/places/detail';
 }
