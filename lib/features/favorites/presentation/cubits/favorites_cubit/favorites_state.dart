@@ -15,14 +15,15 @@ extension FavoritesStateX on FavoritesState {
 }
 
 @immutable
-
 class FavoritesState {
   final FavoritesStateStatus status;
   final String? errorMessage;
+  final List<Place>? favorites;
 
   const FavoritesState({
     this.status = FavoritesStateStatus.initial,
     this.errorMessage,
+    this.favorites,
   });
 
   @override
@@ -31,19 +32,23 @@ class FavoritesState {
 
     return other.runtimeType == runtimeType &&
         (other as FavoritesState).status == status &&
-        other.errorMessage == errorMessage;
+        other.errorMessage == errorMessage &&
+        listEquals(other.favorites, favorites);
   }
 
   @override
-  int get hashCode =>  status.hashCode ^ errorMessage.hashCode;
+  int get hashCode =>
+      status.hashCode ^ errorMessage.hashCode ^ favorites.hashCode;
 
   FavoritesState copyWith({
     FavoritesStateStatus? status,
     String? errorMessage,
+    List<Place>? favorites,
   }) {
     return FavoritesState(
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
+      favorites: favorites ?? this.favorites,
     );
   }
 }
