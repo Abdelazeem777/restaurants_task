@@ -9,14 +9,14 @@ import 'package:restaurants_task/shared_widget/empty_page.dart';
 import '../../../restaurant/presentation/pages/restaurant_details_page.dart';
 import '../shared_widgets/favorite_card.dart';
 
-class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({super.key});
-  static const routeName = '/FavoritesPage';
+class FavoritesTab extends StatelessWidget {
+  const FavoritesTab({super.key});
+  static const routeName = '/FavoritesTab';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<FavoritesCubit>(
-      create: (context) => sl(),
+      create: (context) => sl()..loadFavorites(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Favorites'),
@@ -35,14 +35,14 @@ class FavoritesPage extends StatelessWidget {
       },
       builder: (context, state) {
         if (state.isLoading || state.isInitial)
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
 
         final cubit = context.read<FavoritesCubit>();
 
         final favorites = state.favorites;
         if (favorites == null || favorites.isEmpty)
           return EmptyPage(
-            message: state.errorMessage!,
+            message: 'No favorites added yet!',
             onRefresh: cubit.refresh,
           );
 

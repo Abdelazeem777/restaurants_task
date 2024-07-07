@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:restaurants_task/core/service/cache_service.dart';
+import 'package:restaurants_task/core/service/location_service.dart';
 import 'package:restaurants_task/core/service/network_service.dart';
 import 'package:restaurants_task/features/home/data/datasources/home_local_data_source.dart';
 
@@ -18,6 +19,7 @@ void setupServiceLocator() {
   // Register Core
   sl.registerSingleton<NetworkService>(NetworkServiceImpl());
   sl.registerSingleton<CacheService>(CacheServiceImpl());
+  sl.registerSingleton<LocationService>(LocationServiceImpl());
 
   // Register Features
   // HOME
@@ -39,6 +41,7 @@ void setupServiceLocator() {
   // Restaurant
   sl.registerFactory<RestaurantCubit>(() => RestaurantCubit(
         restaurantRepository: sl(),
+        locationService: sl(),
       ));
   sl.registerFactory<RestaurantRepository>(
       () => RestaurantRepositoryImpl(restaurantRemoteDataSource: sl()));

@@ -8,7 +8,7 @@ abstract class RestaurantRepository {
     int limit = 10,
   });
 
-  Future<Place> getRestaurantDetail(String id);
+  Future<Place?> getRestaurantDetail(String id);
 }
 
 class RestaurantRepositoryImpl implements RestaurantRepository {
@@ -31,6 +31,6 @@ class RestaurantRepositoryImpl implements RestaurantRepository {
       );
 
   @override
-  Future<Place> getRestaurantDetail(String id) =>
+  Future<Place?> getRestaurantDetail(String id) =>
       _remoteDataSource.getRestaurantDetail(id);
 }

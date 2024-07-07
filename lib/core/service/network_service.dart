@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:requests_inspector/requests_inspector.dart';
 import '../exceptions/connection_exception.dart';
 import '../exceptions/request_exception.dart';
 
@@ -26,7 +27,8 @@ class NetworkServiceImpl implements NetworkService {
 
   final _dio = Dio(BaseOptions(headers: {
     'Authorization': 'fsq3R5JGJ8JEdavqMcdl/y+dnkI7Y0EzpMKXfaKgZz7esTw='
-  }, validateStatus: (_) => true));
+  }, validateStatus: (_) => true))
+    ..interceptors.add(RequestsInspectorInterceptor());
 
   @override
   Future<Response> get(

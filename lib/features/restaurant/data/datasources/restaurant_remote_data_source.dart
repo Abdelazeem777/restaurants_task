@@ -14,7 +14,7 @@ abstract class RestaurantRemoteDataSource {
     int limit = 10,
   });
 
-  Future<Place> getRestaurantDetail(String id);
+  Future<Place?> getRestaurantDetail(String id);
 }
 
 class RestaurantRemoteDataSourceImpl implements RestaurantRemoteDataSource {
@@ -39,14 +39,14 @@ class RestaurantRemoteDataSourceImpl implements RestaurantRemoteDataSource {
     return _networkService.get(url, queryParameters: params).then((response) {
       if (response.statusCode != 200) throw RequestException(response.data);
       final result = response.data;
-      if (result['data'] is! List) throw RequestException(result['data']);
-      final data = result['data'] as List;
+      final data = result['results'] as List?;
+      if (data == null) return [];
       return data.map((e) => Place.fromMap(e)).toList();
     });
   }
 
   @override
-  Future<Place> getRestaurantDetail(String id) async {
+  Future<Place?> getRestaurantDetail(String id) async {
     const url = ApiEndPoint.DETAIL_PLACE;
 
     final params = {
@@ -57,7 +57,8 @@ class RestaurantRemoteDataSourceImpl implements RestaurantRemoteDataSource {
       final result = response.data;
       if (result['data'] is! Map) throw RequestException(result['data']);
 
-      final data = result['data'] as Map<String, dynamic>;
+      final data = result['data'] as Map<String, dynamic>?;
+      if (data == null) return null;
       return Place.fromMap(data);
     });
   }
