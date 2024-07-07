@@ -14,6 +14,9 @@ abstract class CacheService {
 
   Future<bool> getIsFirstLaunch();
   Future<void> setIsFirstLaunch(bool isFirstLaunch);
+
+  Future<String?> getString(String key);
+  Future<void> setString(String key, String value);
 }
 
 class CacheServiceImpl implements CacheService {
@@ -83,5 +86,19 @@ class CacheServiceImpl implements CacheService {
 
     await storage.delete(key: _USERDATA);
     return true;
+  }
+
+  @override
+  Future<String?> getString(String key) async {
+    final storage = await _completer.future;
+
+    return await storage.read(key: key);
+  }
+
+  @override
+  Future<void> setString(String key, String value) async {
+    final storage = await _completer.future;
+
+    await storage.write(key: key, value: value);
   }
 }

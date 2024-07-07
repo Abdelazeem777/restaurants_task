@@ -4,7 +4,6 @@ import 'package:restaurants_task/core/service/network_service.dart';
 import 'package:restaurants_task/features/home/data/datasources/home_local_data_source.dart';
 
 import '../../features/favorites/data/datasources/favorites_local_data_source.dart';
-import '../../features/favorites/data/datasources/favorites_remote_data_source.dart';
 import '../../features/favorites/data/repositories/favorites_repository.dart';
 import '../../features/favorites/presentation/cubits/favorites_cubit/favorites_cubit.dart';
 import '../../features/home/data/datasources/home_remote_data_source.dart';
@@ -33,14 +32,9 @@ void setupServiceLocator() {
   // Favorites
   sl.registerFactory<FavoritesCubit>(
       () => FavoritesCubit(favoritesRepository: sl()));
-  sl.registerFactory<FavoritesRepository>(() => FavoritesRepositoryImpl(
-        favoritesLocalDataSource: sl(),
-        favoritesRemoteDataSource: sl(),
-      ));
+  sl.registerFactory<FavoritesRepository>(() => FavoritesRepositoryImpl(sl()));
   sl.registerFactory<FavoritesLocalDataSource>(
       () => FavoritesLocalDataSourceImpl(sl()));
-  sl.registerFactory<FavoritesRemoteDataSource>(
-      () => FavoritesRemoteDataSourceImpl(sl()));
 
   // Restaurant
   sl.registerFactory<RestaurantCubit>(() => RestaurantCubit(
