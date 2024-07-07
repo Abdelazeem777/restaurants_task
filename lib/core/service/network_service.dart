@@ -25,7 +25,7 @@ class NetworkServiceImpl implements NetworkService {
   NetworkServiceImpl();
 
   final _dio = Dio(BaseOptions(headers: {
-    'Authorization:': 'fsq3R5JGJ8JEdavqMcdl/y+dnkI7Y0EzpMKXfaKgZz7esTw='
+    'Authorization': 'fsq3R5JGJ8JEdavqMcdl/y+dnkI7Y0EzpMKXfaKgZz7esTw='
   }, validateStatus: (_) => true));
 
   @override
